@@ -1,18 +1,25 @@
 /*有問題 */
-import { Application,send } from "https://deno.land/x/oak/mod.ts";
+import { Application,send,Router } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application();
+const router = new Router();
+
+router.get('/',(ctx)=>{ctx.response.body=table99()})
+
+app.use(router.routes())
+app.use(router.allowedMethods())
 
 app.use(async(ctx) => {
   await send(ctx, ctx.request.url.pathname, {
-    root: Deno.cwd(),       
+    root: Deno.cwd()+'/file/',       
   });  
-  ctx.response.body=table99()        /*為啥不行勒，有辦法結合js嗎*/
+  //ctx.response.body=table99()        /*為啥不行勒，有辦法結合js嗎*/
 });
 
 console.log('start at : http://127.0.0.1:8000')
 await app.listen({ port: 8000 });
 
+/*html*/
 function table99(){
     let table=["<table><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>"]
     for (let i=1;i<=9;i++){
