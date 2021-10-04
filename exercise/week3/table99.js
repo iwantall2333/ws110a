@@ -5,7 +5,7 @@ const app = new Application();
 app.use(async(ctx) => {
   console.log('path=', ctx.request.url.pathname)
   await send(ctx, ctx.request.url.pathname, {
-    root: Deno.cwd(),       
+    root: Deno.cwd()+'/file/',       
     index: "99tab.html",
   });  
 });
