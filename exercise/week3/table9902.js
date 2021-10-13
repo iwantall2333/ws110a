@@ -13,7 +13,7 @@ app.use(async(ctx) => {
   await send(ctx, ctx.request.url.pathname, {
     root: Deno.cwd()+'/file/',       
   });  
-  //ctx.response.body=table99()        /*為啥不行勒，有辦法結合js嗎*/
+  //ctx.response.body=table99()        /*為啥不行勒，有辦法結合js嗎*/ /*為甚麼不能放在第6行(router之前)*/
 });
 
 console.log('start at : http://127.0.0.1:8000')
