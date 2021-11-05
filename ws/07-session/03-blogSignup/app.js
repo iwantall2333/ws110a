@@ -1,8 +1,7 @@
-//創建帳號
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import * as render from './render.js'
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
-import { Session } from "https://deno.land/x/session@1.1.0/mod.ts";
+import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
 const db = new DB("blog.db");
 db.query("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, title TEXT, body TEXT)");
@@ -14,24 +13,21 @@ const userMap = {
 }
 */
 
+const session = new Session();
 const router = new Router();
 
-router.get('/', list)
+router.get('/', session.initMiddleware(), list)
   .get('/signup', signupUi)
-  .post('/signup', signup)
+  .post('/signup', session.initMiddleware(), signup)
   .get('/login', loginUi)
-  .post('/login', login)
-  .get('/logout', logout)
-  .get('/post/new', add)
+  .post('/login', session.initMiddleware(), login)
+  .get('/logout', session.initMiddleware(), logout)
+  .get('/post/new', session.initMiddleware(), add)
   .get('/post/:id', show)
-  .post('/post', create)
-
-const session = new Session({ framework: "oak" });
-await session.init();
+  .post('/post', session.initMiddleware(), create)
 
 const app = new Application();
 
-app.use(session.use()(session));
 app.use(router.routes());
 app.use(router.allowedMethods());
 

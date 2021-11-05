@@ -37,7 +37,7 @@ async function craw(urlList, urlMap) {
       // console.log('urls=', urls)
       for (let surl of urls) {
         var absurl = surl
-        if (surl.indexOf("//")<0) { // 是相對路徑
+        if (surl.indexOf("//")<0) { // 是相對路徑  /*有//是完整往指 所以沒有//就是相對路徑 此飯粒有處理相對路徑 不同於07-crawler*/
            absurl = (new URL(surl, url)).href
            // console.log('absurl=', absurl)
         }

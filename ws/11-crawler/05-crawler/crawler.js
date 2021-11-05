@@ -4,15 +4,15 @@ async function getPage(url) {
 }
 
 async function craw(urlList) {
-  for (let i in urlList) {
+  for (let i in urlList) {                  //2.爬的網站一個個塞
     var url = urlList[i]
-    console.log(url, 'download')
+                                                                      console.log(url, 'download')
     var page = await getPage(url)
-    await Deno.writeTextFile(`data/${i}.txt`, page)
+    await Deno.writeTextFile(`data/${i}.txt`, page)   //3.塞到這裡
   }
 }
 
-var urlList = [
+var urlList = [     //1.爬的網站
   'https://example.com', 
   'https://jsonplaceholder.typicode.com/todos/1', 
   'https://jsonplaceholder.typicode.com/todos/2', 
@@ -28,3 +28,5 @@ var urlList = [
 ]
 
 await craw(urlList)
+//執行deno run -A crawler.js
+//東西會載入到data資廖夾

@@ -1,20 +1,20 @@
-var R = {}   //後面塞東西
+var R = {}
 
-window.onhashchange = async function () {    //onhashchange 相當於router(偵測到網址列後面的書籤改變)
+window.onhashchange = async function () {
   var r
-  var tokens = window.location.hash.split('/')     //window.location.hash 網址後面#的東西   hash用斜線分割 token[1]是0 
+  var tokens = window.location.hash.split('/')
   console.log('tokens=', tokens)
   switch (tokens[0]) {
-    case '#show':         //根據hash是誰決定
-      r = await window.fetch('/post/' + tokens[1])   //show
-      let post = await r.json()  //轉成物件丟給你
+    case '#show':
+      r = await window.fetch('/post/' + tokens[1])
+      let post = await r.json()
       R.show(post)
       break
     case '#new':
       R.new()
       break
-    default:      //都不是則直接列出所有貼文
-      r = await window.fetch('/list') 
+    default:
+      r = await window.fetch('/list/')
       let posts = await r.json()
       R.list(posts)
       break
@@ -25,7 +25,7 @@ window.onload = function () {
   window.onhashchange()
 }
 
-R.layout = function (title, content) {              
+R.layout = function (title, content) {
   document.querySelector('title').innerText = title
   document.querySelector('#content').innerHTML = content
 }
@@ -73,9 +73,8 @@ R.show = function (post) {
 R.savePost = async function () {
   let title = document.querySelector('#title').value
   let body = document.querySelector('#body').value
-  let r = await window.fetch('/post', {         //新的跟伺服器溝通的方法  //fetch : (網址列後面改成/post，並且傳回物件)  就會觸發app.js內的router.post('/post',create)
-//fetch回傳以下內容， 
-    body: JSON.stringify({title: title, body: body}),   //物件轉乘字串，才能用JSON傳回
+  let r = await window.fetch('/post', {
+    body: JSON.stringify({title: title, body: body}),
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

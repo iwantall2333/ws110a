@@ -1,7 +1,18 @@
-.body {                         
+.message{height: 26vh;  padding: 3px;}
+    table{
+        width: 80vw;
+        position:absolute;
+        transform:translate(50%,0);
+        right: 50%;
+        border:solid 1px rgb(34, 19, 100);
+    }  
+    tr {}
+    #m-tableHead {text-align: center;}
+
+.body {
     border:solid 1px pink;
     padding: 30px;
-    height: 85vh;                    /*更動部分*/
+    height: 59vh;
 }
     .body > div {
         width: 50%;

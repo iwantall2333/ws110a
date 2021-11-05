@@ -7,7 +7,7 @@ function craw(urlList) {
   for (let i in urlList) {
     var url = urlList[i]
     console.log(url, 'download')
-    getPage(url).then((page)=>{
+    getPage(url).then((page)=>{   //更沒有道德的爬蟲  同時發13個請求出去 ?
       Deno.writeTextFile(`data/${i}.txt`, page)
     })
   }

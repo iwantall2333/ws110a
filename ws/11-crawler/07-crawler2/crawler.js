@@ -4,12 +4,12 @@ async function getPage(url) {
 }
 
 function html2urls(html) {
-  var r = /\shref\s*=\s*['"](.*)['"]/g
+  var r = /\shref\s*=\s*['"](.*)['"]/g                
   var urls = []
   while (true) {
     let m = r.exec(html)
     if (m == null) break
-    urls.push(m[1])
+    urls.push(m[1])                 
   }
   return urls
 }
@@ -17,14 +17,14 @@ function html2urls(html) {
 async function craw(urlList) {
   for (let i=0; i<urlList.length; i++) {
     var url = urlList[i]
-    console.log(url, 'download')
-    if (!url.startsWith('http')) continue
+                                          console.log(url, 'download')
+    if (!url.startsWith('http')) continue               //非http開頭則不會抓取，所以網頁的相對路徑都抓不到了   
     try {
-      var page = await getPage(url)
+      var page = await getPage(url)             //取得
       await Deno.writeTextFile(`data/${i}.txt`, page)
       var urls = html2urls(page)
       for (url of urls) {
-        urlList.push(url)
+        urlList.push(url)                               //push之後 回到18行 會觸發for 下一個i 所以不會又從第一筆資料開始 
       } 
     } catch (error) {
       console.log('error=', error)
