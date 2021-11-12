@@ -9,7 +9,7 @@ ws.on("open", async function() {
   console.log("ws connected! (type 'close' to quit)\n");
   while (true) {
     const line = await prompt("> ")
-    if (line == 'close') break
+    if (line == 'close') break         //輸入close關掉
     console.log("send : ", line);
     await ws.send(line);
   }

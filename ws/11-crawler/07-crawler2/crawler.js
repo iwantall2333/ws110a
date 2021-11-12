@@ -20,17 +20,18 @@ async function craw(urlList) {
                                           console.log(url, 'download')
     if (!url.startsWith('http')) continue               //非http開頭則不會抓取，所以網頁的相對路徑都抓不到了   
     try {
-      var page = await getPage(url)             //取得
-      await Deno.writeTextFile(`data/${i}.txt`, page)
+      var page = await getPage(url)             //取得該網頁內的所有url 且為文字(res.text())
+      await Deno.writeTextFile(`data/${i}.txt`, page)  //將第i筆網址放入data資料夾 
       var urls = html2urls(page)
       for (url of urls) {
-        urlList.push(url)                               //push之後 回到18行 會觸發for 下一個i 所以不會又從第一筆資料開始 
+        urlList.push(url)                               //再把所有讀到的url通通往後接續塞入urlList //push之後 回到18行 會觸發for 下一個i 所以不會又從第一筆資料開始 
       } 
     } catch (error) {
       console.log('error=', error)
     }
   }
 }
+//再把所有讀到的url通通往後接續塞入urlList //再讀下一筆資料 所以這裡是邏輯:writeText執行順序 : 第一個url-->下面的第一.一個url-->下面的第一.一.一個url 優先性設計有問題 理想應該為第一個url-->第二個url-->第三個url-->讀完才往更下一層的url讀取
 
 var urlList = [
   'https://example.com', 
