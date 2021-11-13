@@ -6,23 +6,25 @@ const app = new Application();
 
 app.use(async (ctx) => {
   console.log('path=', ctx.request.url.pathname)
-  await send(ctx, ctx.request.url.pathname, {
-    root: `${Deno.cwd()}/`,
-    index: "index.html",
-  });
+	try {
+		await send(ctx, ctx.request.url.pathname, {
+			root: `${Deno.cwd()}/`,
+			index: "index.html",
+		});	
+	} catch (e) { console.log('Error:', e); }
 });
 
 // websocket serve
-const wss = new WebSocketServer(8080);
+const wss = new WebSocketServer(8080);     //server
 
-wss.on("connection", function (wsc: WebSocketClient) {
+wss.on("connection", function (wsc: WebSocketClient) {   //client
 	wsc.on("message", function (message: string) {
 		console.log(message);
 		//ws.send(message);
 		// broadcast message
-		wss.clients.forEach(function each(client) {
+		wss.clients.forEach(function each(client) {   
 			if (!client.isClosed) {
-				client.send(message);
+				client.send(message);               
 			}
 		});
 	});
@@ -31,4 +33,6 @@ wss.on("connection", function (wsc: WebSocketClient) {
 console.log('start at : http://127.0.0.1:8000')
 await app.listen({ port: 8000 });
 
-//這裡的回呼函數 任何人送訊息給我 他都會廣播出去給所有人//(ws: WebSocket)是型態描述
+
+//這裡的回呼函數 任何人送訊息給我 他都會廣播出去給所有人
+//(ws: WebSocket)是型態描述

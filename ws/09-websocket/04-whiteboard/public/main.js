@@ -42,7 +42,7 @@
     console.log('socket:onclose()...')
   }
 
-  socket.onmessage = function(event){
+  socket.onmessage = function(event){                //接收到對方傳來的訊息 然後我就話線
     console.log('onmessage:', event.data);
     var data = JSON.parse(event.data);
     if (data.type == 'drawing') {
@@ -68,13 +68,13 @@
     var w = canvas.width;
     var h = canvas.height;
 
-    socket.send(JSON.stringify({
+    socket.send(JSON.stringify({      //傳送出去 然後到伺服器再把字串解開
       type:'drawing',
-      x0: x0 / w,
+      x0: x0 / w,               //寬與高正規畫(為了讓每個人板子不同大小都能看到同一張圖)  使用到比例
       y0: y0 / h,
       x1: x1 / w,
       y1: y1 / h,
-      color: color
+      color: color                     
     }))
     /*
     socket.emit('drawing', {
@@ -111,7 +111,7 @@
   }
 
   // limit the number of events per second
-  function throttle(callback, delay) {
+  function throttle(callback, delay) {  //滑鼠事件會發很快很多 會造成server壓力 所以throttle限制她每秒發出的移動次數
     var previousCall = new Date().getTime();
     return function() {
       var time = new Date().getTime();

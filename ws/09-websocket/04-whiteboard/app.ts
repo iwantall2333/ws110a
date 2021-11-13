@@ -1,4 +1,4 @@
-/*import { WebSocket, WebSocketServer } from "https://deno.land/x/websocket/mod.ts";
+import { WebSocket, WebSocketServer } from "https://deno.land/x/websocket/mod.ts";
 import { Application, send } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application();  //.ts即js+型態
@@ -28,4 +28,4 @@ wss.on("connection", function (ws: WebSocket) {
 });
 
 console.log('start at : http://127.0.0.1:8000')
-await app.listen({ port: 8000 });*/
+await app.listen({ port: 8000 });
