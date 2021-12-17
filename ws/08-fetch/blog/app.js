@@ -13,7 +13,7 @@ router.get('/list', list)
   .get('/post/:id', show)
   .post('/post', create)
 
-app.use(router.routes())
+app.use(router.routes()) //要求先去執行router的東西
 app.use(router.allowedMethods())
 
 app.use(async (ctx, next) => {
@@ -26,7 +26,7 @@ app.use(async (ctx, next) => {
 })
 
 async function list (ctx) {
-  ctx.response.type = 'application/json'   //告訴他傳回的是json而非html，讓瀏覽器辨識
+  ctx.response.type = 'application/json'   //告訴他傳回的是json而非html，讓瀏覽器辨識 //?
   ctx.response.body = posts       
 }
 
@@ -34,8 +34,8 @@ async function show (ctx) {
   const id = ctx.params.id
   const post = posts[id]
   if (!post) ctx.throw(404, 'invalid post id')
-  ctx.response.type = 'application/json'
-  ctx.response.body = post
+  ctx.response.type = 'application/json'   //告訴他傳回的是json而非html，讓瀏覽器辨識
+  ctx.response.body = post   //why need this???
 }
 
 async function create (ctx) {

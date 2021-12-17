@@ -6,9 +6,9 @@ window.onhashchange = async function () {    //onhashchange 相當於router(偵�
   console.log('tokens=', tokens)
   switch (tokens[0]) {
     case '#show':         //根據hash是誰決定
-      r = await window.fetch('/post/' + tokens[1])   //show
+      r = await window.fetch('/post/' + tokens[1])   //app.js show   //fetch是接收 該網址會回傳的資料  即觸發router.get app.js的整個網頁 即ctx (內有ctx.response.body blablabla)
       let post = await r.json()  //轉成物件丟給你
-      R.show(post)
+      R.show(post)     //而show則會取得post.title(即整個ctx物件內的特定東西)                         //document.querySelector('XXX').innerHTML
       break
     case '#new':
       R.new()
@@ -73,7 +73,7 @@ R.show = function (post) {
 R.savePost = async function () {
   let title = document.querySelector('#title').value
   let body = document.querySelector('#body').value
-  let r = await window.fetch('/post', {         //新的跟伺服器溝通的方法  //fetch : (網址列後面改成/post，並且傳回物件)  就會觸發app.js內的router.post('/post',create)
+  let r = await window.fetch('/post', {         //新的跟伺服器溝通的方法  //fetch : (抓取網址列後面形式是/post的內容，並且傳回物件)  就會觸發app.js內的router.post('/post',create)
 //fetch回傳以下內容， 
     body: JSON.stringify({title: title, body: body}),   //物件轉乘字串，才能用JSON傳回
     method: 'POST',

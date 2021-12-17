@@ -1,28 +1,17 @@
-.message{height: 26vh;  padding: 3px;}
-    table{
-        width: 80vw;
-        position:absolute;
-        transform:translate(50%,0);
-        right: 50%;
-        border:solid 1px rgb(34, 19, 100);
-    }  
-    tr {}
-    #m-tableHead {text-align: center;}
-
-.body {
+/*一般*/
+.body {                         
     border:solid 1px pink;
     padding: 30px;
-    height: 59vh;
+    height: 85vh;                    
 }
     .body > div {
         width: 50%;
         border:solid 1px pink;
         padding: 8px;
         text-align: center;
-        position: absolute; 
-        display: block;
-        transform:translate(50%,0);
-        right: 50%;
+        transform:translate(50%,100%);
+        right: 50%;bottom:60%; /*更動部分*/
+        overflow: auto;      /*不能少*/
     }
 
 .header  { 

@@ -1,0 +1,19 @@
+/*dropdown*/
+#a-add-content{display: none;}
+
+
+    .body > div {
+        width: 50%;
+        border:solid 1px pink;
+        padding: 8px;
+        text-align: center;
+        overflow:auto;
+
+    }
+ 
+
+
+
+
+
+

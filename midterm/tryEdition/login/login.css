@@ -1,0 +1,77 @@
+/*dropdown*/
+#a-add-content{display: none;}
+#a-add:hover #a-add-content {display: block;}
+
+#login_creater{
+    display:inline;
+    position: absolute; 
+    transform:translate(-50%,0);
+    left: 40%;top:40%;
+}
+  #login_player{
+    display:inline;
+    position: absolute; 
+    transform:translate(-50%,0);
+    left: 60%;top:40%;
+}
+/*一般*/
+.body {                         
+    border:solid 1px pink;
+    padding: 30px;
+    height: 85vh;                    /*更動部分*/
+}
+    .body > div {
+        display: inline;
+
+        width: 80px;
+        border:solid 1px pink;
+        padding: 8px;
+        text-align: center;
+        transform:translate(50%,0);
+        right: 50%;
+        overflow: auto;      /*不能少*/
+    }
+
+.header  { 
+    padding: 5px;}
+
+    #h-leave {
+        position: absolute; 
+        float: left; 
+        display: inline;}
+    #h-room {
+        position:absolute;
+        transform:translate(-50%,0);
+        left:50%;
+        display: inline;}
+    #h-logout {
+        float:right;
+        display: inline;}
+
+.footer {}
+    #f-content{ 
+        font-size: 10px;
+        text-align: center;
+    }
+
+body > div{
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+body{margin: 0%;
+    overflow: hidden;}
+
+/*顏色*/
+.header{background-color: lightslategray;
+        color: lightyellow;}
+.body{background-color: black;
+    color: blanchedalmond;}
+.message{background-color: rgba(63, 6, 20, 0.801);
+        color:white;}
+        table{background-color: cadetblue;}
+.footer{
+    background-color: darkcyan;
+    color: white;
+}
+body{background-color:darkcyan ;}

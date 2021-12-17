@@ -1,0 +1,68 @@
+.message{height: 26vh;  padding: 3px;}
+    table{
+        width: 80vw;
+        position:absolute;
+        transform:translate(50%,0);
+        right: 50%;
+        border:solid 1px rgb(34, 19, 100);
+    }  
+    tr {}
+    #m-tableHead {text-align: center;}
+
+.body {
+    border:solid 1px pink;
+    padding: 30px;
+    height: 59vh;
+}
+    .body > div {
+        width: 50%;
+        border:solid 1px pink;
+        padding: 8px;
+        text-align: center;
+        transform:translate(50%,0);
+        right: 50%;
+    }
+
+.header  { 
+    padding: 5px;}
+
+    #h-leave {
+        position: absolute; 
+        float: left; 
+        display: inline;}
+    #h-room {
+        position:absolute;
+        transform:translate(-50%,0);
+        left:50%;
+        display: inline;}
+    #h-logout {
+        float:right;
+        display: inline;}
+
+.footer {}
+    #f-content{ 
+        font-size: 10px;
+        text-align: center;
+    }
+
+body > div{
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+body{margin: 0%;
+    overflow: hidden;}
+
+/*顏色*/
+.header{background-color: lightslategray;
+        color: lightyellow;}
+.body{background-color: black;
+    color: blanchedalmond;}
+.message{background-color: rgba(63, 6, 20, 0.801);
+        color:white;}
+        table{background-color: cadetblue;}
+.footer{
+    background-color: darkcyan;
+    color: white;
+}
+body{background-color:darkcyan ;}
