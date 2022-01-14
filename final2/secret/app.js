@@ -153,6 +153,6 @@ async function create(ctx) {
   }
 }
 
-console.log('Server run at http://127.0.0.1:8000')
-await app.listen({ port: 8000 });
+console.log('Server run at http://127.0.0.1:8540')
+await app.listen({ port: 8540 });
 console.log(hex_md5("asdasd"))
