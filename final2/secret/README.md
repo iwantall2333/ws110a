@@ -1,6 +1,6 @@
 # Blog -- Classic
 
-* 從老師的03-blogSignup作修改，
+* 從老師的03-blogSignup作修改，修改比例:20% + md5的20%
 * 修改內容 : 改成一開始進入登入頁面，未成功登入無法檢視，並且資料庫將不儲存使用者輸入的密碼
 src : [https://gitlab.com/ccc110/ws/-/tree/master/07-session/03-blogSignup](https://gitlab.com/ccc110/ws/-/tree/master/07-session/03-blogSignup)
 * 資料庫儲存密碼的方式 : md5產生固定長度雜湊值，將hash值與登入介面的密碼作比對 ，來源為下，將其讀懂並應用
