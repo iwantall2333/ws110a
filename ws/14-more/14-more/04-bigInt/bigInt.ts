@@ -23,7 +23,10 @@ export function modPow(b: bigint, e: bigint, n: bigint): bigint {
   return r
 }
 
-// gcd(a,b) = ri = si+b*ti
+// gcd(a,b) = ri = a*si+b*ti 
+//gcd(e,N) = 1 = e*si + N*si
+//      1 mod N = e*si + N*si mod N =e*si mod N 
+//      1=e*si mod N 找到si為d  大概ㄅ  雖然我看不懂
 export function extEuclid(a: bigint, b: bigint) {
   let [si, s] = [1n, 0n] // let si = 1n, s = 0n // let [si,s] = [1n,0n]
   let [ti, t] = [0n, 1n] // let ti = 0n, t = 1n // let [ti,t] = [0n,1n]
@@ -45,8 +48,8 @@ export function extEuclid(a: bigint, b: bigint) {
 // 擴展歐幾里得算法的等效公式：ax+by = gcd(a,b)。
 // gcd(a,b)=ri=1=a*si+b*ti
 // gcd(x,N)=1=x*si+N*ti   => x*si=1 mod N
-export function modInv(x:bigint, N:bigint) {
-  let [si] = extEuclid(x, N)
+export function modInv(x:bigint, N:bigint) {  
+  let [si] = extEuclid(x, N)      //擴展歐基里德算法
   return (si+N)%N
 }
 
@@ -61,7 +64,7 @@ export function decompose(m: bigint) { // m=2^t * u
   return { t, u }
 }
 
-export function witness(a: bigint, n: bigint) {
+export function witness(a: bigint, n: bigint) {  //費碼小定理
   let { t, u } = decompose(n - 1n)
   let x = modPow(a, u, n)
   for (let i = 1n; i <= t; i++) {
@@ -86,7 +89,7 @@ export function millerRabinPrime(n: bigint, s: bigint) {//快速驗是否是質�
   let len = n.toString().length
   for (let i = 1n; i <= s; i++) {
     let a = randomBigInt(len) % n
-    if (witness(a, n))  //驗證是否是質數，但他有錯誤的機率，很低
+    if (witness(a, n))  //驗證是否是質數，但他有錯誤的機率，很低 //費碼小定理
       return false
   }
   return true
@@ -100,8 +103,8 @@ export function isPrime(n: bigint) {
 export function randomPrime(len: number, maxLoops: number = 9999999) {
   var r = null
   for (let i = 0; i < maxLoops; i++) {
-    r = randomBigInt(len)
-    if (isPrime(r)) break
+    r = randomBigInt(len)   //隨機產生一個大數
+    if (isPrime(r)) break  //如果他是質數就傳回來
   }
   return r
 }
